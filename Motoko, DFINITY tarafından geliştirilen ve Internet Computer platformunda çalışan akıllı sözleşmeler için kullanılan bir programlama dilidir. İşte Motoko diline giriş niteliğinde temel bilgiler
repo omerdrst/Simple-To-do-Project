@@ -1,0 +1,120 @@
+1. Declarations (Bildirimler)
+Başlangıç değeri olan değişkenlerin tanıtımı:
+let anahtar kelimesiyle değişken tanımlanır. Değer atandıktan sonra değiştirilemez.
+
+let x = 10;
+
+Değişebilir değişkenlerin tanıtımı:
+var anahtar kelimesiyle tanımlanan değişkenlerin değeri değiştirilebilir.
+
+var PI = 3.14159;
+
+Fonksiyonların tanımı:
+func anahtar kelimesiyle fonksiyon tanımlanır.
+
+func add(a: Nat, b: Nat): Nat {
+  return a + b;
+}
+
+2. Expressions (İfadeler)
+Temel aritmetik işlemleri:
+Motoko'da +, -, *, ve / operatörleri kullanılarak aritmetik işlemler gerçekleştirilir.
+
+let sum = 1 + 2; // 3
+let difference = 5 - 3; // 2
+let product = 4 * 2; // 8
+let quotient = 8 / 2; // 4
+
+Karşılaştırma operatörleri:
+>, <, ==, ve != gibi operatörlerle karşılaştırma yapılır.
+
+let isGreater = 5 > 3; // true
+let isEqual = 4 == 4; // true
+let isNotEqual = 5 != 4; // true
+
+Listelerin ve nesnelerin öğelerine erişim:
+Köşeli parantez [] kullanarak erişim sağlanır.
+
+let list = [1, 2, 3];
+let firstElement = list[0]; // 1
+
+Akış kontrol ifadeleri:
+if, else, let, ve for ifadeleri ile akış kontrol edilir.
+
+if (x > 10) {
+  // Do something
+} else {
+  // Do something else
+}
+
+for (i in 0 .. 10) {
+  // Loop from 0 to 9
+}
+
+3. Types (Türler)
+Temel türler:
+Motoko statik olarak yazılmıştır ve type güvenliğini garanti eder. Temel türler arasında Nat (natural numbers), Text (strings), ve Bool (boolean) bulunur.
+
+let number: Nat = 42;
+let text: Text = "Hello, Motoko!";
+let isTrue: Bool = true;
+
+Özelleştirilmiş türler:
+struct veya enum kullanılarak tanımlanabilir.
+
+struct Person {
+  name: Text;
+  age: Nat;
+}
+
+enum Color {
+  Red;
+  Green;
+  Blue;
+}
+
+4. Actors
+Actor bildirimi:
+Actors, Motoko'da eşzamanlı hesaplama birimleridir ve actor anahtar kelimesi ile tanımlanır.
+
+actor Counter {
+  var count: Nat = 0;
+
+  public func increment() : async Nat {
+    count += 1;
+    return count;
+  }
+}
+
+Actors arasındaki iletişim:
+Actors, asenkron mesaj aktarımı yoluyla iletişim kurar.
+
+5. Asynchronous Programming (Eşzamansız Programlama)
+await kullanımı:
+Bir işlemin sonucunu beklemek için await kullanılır.
+
+let result = await someAsyncFunction();
+
+Hata yönetimi:
+Hatalar try ve catch ile işlenir.
+
+try {
+  let result = await someRiskyAsyncFunction();
+} catch (error) {
+  // Handle error
+}
+
+6. Comments (Yorumlar)
+Tek satır yorum:
+// kullanılır.
+
+// Bu bir tek satır yorumudur.
+
+Blok yorum:
+/* */ kullanılır.
+
+/* 
+  Bu bir 
+  blok yorumdur.
+*/
+
