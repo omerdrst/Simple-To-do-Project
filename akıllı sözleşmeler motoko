@@ -1,0 +1,60 @@
+import Types "Types";
+
+module {
+  var todoList : [Types.TodoItem] = [];
+
+  public func addTodoItem(description: Text) : async () {
+    let newItem : Types.TodoItem = {
+      id = generateId();
+      description = description;
+      completed = false;
+    };
+    todoList := Array.append(todoList, [newItem]);
+  };
+
+  public func completeTodoItem(id: Nat) : async () {
+    todoList := Array.map(todoList, func (item) {
+      if (item.id == id) {
+        item.completed := true;
+      };
+      item
+    });
+  };
+
+  public func removeTodoItem(id: Nat) : async () {
+    todoList := Array.filter(todoList, func (item) {
+      item.id != id
+    });
+  };
+
+  private func generateId() : Nat {
+    return Nat(todoList.size() + 1);
+  };
+};
+module {
+  public type TodoItem = {
+    id: Nat;
+    description: Text;
+    completed: Bool;
+  };
+};
+import Utils "Utils";
+import Types "Types";
+
+actor {
+  public query func getTodoList() : async [Types.TodoItem] {
+    return Utils.todoList;
+  };
+
+  public func addTodoItem(description: Text) : async () {
+    await Utils.addTodoItem(description);
+  };
+
+  public func completeTodoItem(id: Nat) : async () {
+    await Utils.completeTodoItem(id);
+  };
+
+  public func removeTodoItem(id: Nat) : async () {
+    await Utils.removeTodoItem(id);
+  };
+};
